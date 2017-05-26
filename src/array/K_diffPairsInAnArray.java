@@ -3,10 +3,11 @@ package array;
 import java.util.HashMap;
 
 /**
- * Created by einez on 2017/5/26.
+ * https://leetcode.com/problems/k-diff-pairs-in-an-array/#/description
+ * Given an array of integers and an integer k, you need to find the number of unique k-diff pairs in the array. Here a k-diff pair is defined as an integer pair (i, j), where i and j are both numbers in the array and their absolute difference is k.
  */
 public class K_diffPairsInAnArray {
-//    public int findPairs(int[] nums, int k) {
+    //    public int findPairs(int[] nums, int k) {
 //        int count = 0;
 //        HashMap<Integer, Integer> hashMap = new HashMap<>();
 //        for (int i = 0; i < nums.length; i++) {
