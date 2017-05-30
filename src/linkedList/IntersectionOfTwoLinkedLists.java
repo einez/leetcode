@@ -7,22 +7,10 @@ package linkedList;
 public class IntersectionOfTwoLinkedLists {
     public ListNode getIntersectionNode(ListNode headA, ListNode headB) {
         ListNode pa = headA, pb = headB;
-        while (pa != null && pb != null) {
-            pa = pa.next;
-            pb = pb.next;
+        while (pa != pb) {
+            pa = pa == null ? headB : pa.next;
+            pb = pb == null ? headA : pb.next;
         }
-        while (pa != null) {
-            pa = pa.next;
-            headA = headA.next;
-        }
-        while (pb != null) {
-            pb = pb.next;
-            headB = headB.next;
-        }
-        while (headA != headB) {
-            headA = headA.next;
-            headB = headB.next;
-        }
-        return headA;
+        return pa;
     }
 }
