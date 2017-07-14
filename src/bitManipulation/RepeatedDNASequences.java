@@ -1,7 +1,7 @@
 package bitManipulation;
 
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -16,20 +16,38 @@ public class RepeatedDNASequences {
     }
 
     public List<String> findRepeatedDnaSequences(String s) {
-        HashMap<String, Integer> hashMap = new HashMap<>();
-        for (int i = 0; i <= s.length() - 10; i++) {
-            String sub = s.substring(i, i + 10);
-            if (hashMap.containsKey(sub)) {
-                hashMap.put(sub, hashMap.get(sub) + 1);
-            } else {
-                hashMap.put(sub, 1);
+        HashSet<String> once = new HashSet<>();
+        HashSet<String> twice = new HashSet<>();
+        for (int i = 0; i + 9 < s.length(); i++) {
+            if (!once.add(s.substring(i, i + 10))) {
+                twice.add(s.substring(i, i + 10));
             }
         }
-        List<String> list = new LinkedList<>();
-        for (String s1 : hashMap.keySet()) {
-            if (hashMap.get(s1) > 1)
-                list.add(s1);
-        }
-        return list;
+        return new ArrayList<>(twice);
     }
+
+//    public List<String> findRepeatedDnaSequences(String s) {
+//        HashSet<Integer> once = new HashSet<>();
+//        HashSet<Integer> twice = new HashSet<>();
+//        List<String> ret = new LinkedList<>();
+//        int[] mapping = new int[26];
+//        mapping['A' - 'A'] = 0;
+//        mapping['T' - 'A'] = 1;
+//        mapping['C' - 'A'] = 2;
+//        mapping['G' - 'A'] = 3;
+//        int bitCode = 0;
+//        for (int i = 0; i < 9 && i < s.length(); i++) {
+//            bitCode <<= 2;
+//            bitCode |= mapping[s.charAt(i) - 'A'];
+//        }
+//        for (int i = 9; i < s.length(); i++) {
+//            bitCode <<= 2;
+//            bitCode &= 0xfffff;
+//            bitCode |= mapping[s.charAt(i) - 'A'];
+//            if (!once.add(bitCode) && twice.add(bitCode)) {
+//                ret.add(s.substring(i - 9, i + 1));
+//            }
+//        }
+//        return ret;
+//    }
 }
